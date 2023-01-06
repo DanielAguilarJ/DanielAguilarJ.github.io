@@ -1,0 +1,151 @@
+public class Collectable : MonoBehaviour
+{
+    // Variable para almacenar el sonido de recolección.
+    public AudioClip collectSound;
+
+    // Update se llama una vez por frame.
+    void Update()
+    {
+        // Comprobamos si el jugador ha entrdado en contacto con el objeto.
+        if (PlayerTouchesObject())
+        {
+            // Si es así, recogemos el objeto.
+            CollectObject();
+        }
+    }
+
+    // Función para comprobar si el jugador ha entrado en contacto con el objeto.
+    bool PlayerTouchesObject()
+    {
+        // Aquí puedes poner la lógica que necesites para comprobar si el jugador ha entrado en contacto con el objeto.
+        // Por ejemplo, puedes usar una colisión o un raycast.
+    }
+
+    // Función para recoger el objeto.
+    void CollectObject()
+    {
+        // Aquí puedes poner la lógica necesaria para recoger el objeto.
+        // Por ejemplo, aumentar una puntuación, añadir un elemento al inventario, etc.
+
+        // Reproducimos el sonido de recolección.
+        AudioSource.PlayClipAtPoint(collectSound, transform.position);
+
+        // Destruimos el objeto.
+        Destroy(gameObject);
+    }
+}
+hay otro metodo aqui
+
+public class Collectable : MonoBehaviour
+{
+    // Update se llama una vez por frame.
+    void Update()
+    {
+        // Comprobamos si el jugador ha entrdado en contacto con el objeto.
+        if (PlayerTouchesObject())
+        {
+            // Si es así, recogemos el objeto.
+            CollectObject();
+        }
+    }
+
+    // Función para comprobar si el jugador ha entrado en contacto con el objeto.
+    bool PlayerTouchesObject()
+    {
+        // Obtenemos el componente "Collider2D" del objeto.
+        Collider2D collider = GetComponent<Collider2D>();
+
+        // Comprobamos si el collider ha colisionado con el jugador.
+        if (collider.IsTouchingLayers(LayerMask.GetMask("Player")))
+        {
+            // Si es así, devolvemos "true".
+            return true;
+        }
+        // Si no, devolvemos "false".
+        return false;
+    }
+
+    // Función para recoger el objeto.
+    void CollectObject()
+    {
+        // Aquí puedes poner la lógica necesaria para recoger el objeto.
+        // Por ejemplo, aumentar una puntuación, añadir un elemento al inventario, etc.
+
+        // Destruimos el objeto.
+        Destroy(gameObject);
+    }
+}
+
+public class Collectable : MonoBehaviour
+{
+    // Update se llama una vez por frame.
+    void Update()
+    {
+        // Comprobamos si el jugador ha entrdado en contacto con el objeto.
+        if (PlayerTouchesObject())
+        {
+            // Si es así, recogemos el objeto.
+            CollectObject();
+        }
+    }
+
+    // Función para comprobar si el jugador ha entrado en contacto con el objeto.
+    bool PlayerTouchesObject()
+    {
+        // Creamos un raycast desde la posición
+
+
+public class ScoreManager : MonoBehaviour
+{
+    // Variable para almacenar la puntuación.
+    public int score = 0;
+
+    // Función para aumentar la puntuación.
+    public void IncreaseScore(int amount)
+    {
+        // Aumentamos la puntuación en la cantidad especificada.
+        score += amount;
+    }
+
+    // Función para resetear la puntuación.
+    public void ResetScore()
+    {
+        // Ponemos la puntuación a 0.
+        score = 0;
+    }
+}
+Para usar este script, simplemente añade un componente "ScoreManager" al objeto que quieres que controle la puntuación en tu juego y 
+llama a la función "IncreaseScore" cada vez que quieras aumentar la puntuación. 
+También puedes llamar a la función "ResetScore" para resetear la puntuación a 0.
+
+public class LifeManager : MonoBehaviour
+{
+    // Variable para almacenar el número de vidas del jugador.
+    public int lives = 3;
+
+    // Función para restar una vida al jugador.
+    public void LoseLife()
+    {
+        // Restamos una vida al jugador.
+        lives--;
+
+        // Si el jugador no tiene más vidas, llamamos a la función "GameOver".
+        if (lives <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    // Función para resetear las vidas del jugador.
+    public void ResetLives()
+    {
+        // Ponemos las vidas del jugador a 3.
+        lives = 3;
+    }
+
+    // Función para ejecutar la lógica de fin de juego.
+    void GameOver()
+    {
+        // Aquí puedes poner la lógica necesaria para ejecutar cuando el juego acabe, como mostrar una pantalla de Game Over o volver al menú principal.
+    }
+}
